@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
@@ -12,5 +10,14 @@ class UserControllerTest extends TestCase
     {
         $this->get('/login')
             ->assertSeeText("Login");
+    }
+
+    public function testLoginSuccess()
+    {
+        $this->post('/login', [
+            "user" => "dhayus",
+            "password" => "rahasia"
+        ])->assertRedirect("/")
+            ->assertSessionHas("user", "dhayus");
     }
 }
