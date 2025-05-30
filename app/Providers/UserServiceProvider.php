@@ -12,7 +12,7 @@ class UserServiceProvider extends ServiceProvider implements DeferrableProvider
     public array $singletons = [
         UserService::class => UserServiceImpl::class
     ];
-    public function provides()
+    public function provides():array
     {
         return [UserService::class];
     }
