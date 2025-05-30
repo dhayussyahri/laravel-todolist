@@ -3,5 +3,5 @@
 namespace App\Services;
 interface TodolistSerice
 {
-
+   public function saveTodo(string $id, string $todo): void;
 }
