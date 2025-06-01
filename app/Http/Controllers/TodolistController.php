@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\TodolistSerice;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TodolistController extends Controller
@@ -35,8 +36,9 @@ class TodolistController extends Controller
         $this->todolistSerice->saveTodo(uniqid(), $todo);
         return redirect()->action([TodolistController::class, 'todoList']);
     }
-    public function removeTodo(Request $request, string $todoId)
+    public function removeTodo(Request $request, string $todoId): RedirectResponse
     {
-
+        $this->todolistSerice->removeTodo($todoId);
+        return redirect()->action([TodolistController::class, 'todoList']);
     }
 }
